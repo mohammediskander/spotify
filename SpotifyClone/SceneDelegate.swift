@@ -21,10 +21,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         UIFont.overrideInitialize()
         if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UINavigationController(rootViewController: HomeController()) // Your RootViewController in here
-            self.window = window
-            window.makeKeyAndVisible()
+            window = UIWindow(windowScene: windowScene)
+            window?.windowScene = windowScene
+//            window.rootViewController = UINavigationController(rootViewController: HomeController()) // Your RootViewController in here
+            window?.rootViewController = HomeController() // Your RootViewController in here
+
+//            self.window = window
+            window?.makeKeyAndVisible()
         }
     }
     

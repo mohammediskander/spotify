@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AlbumFetchingOperation: Operation {
-    var url: URL?
-    let completion:
-}
+//class AlbumFetchingOperation: Operation {
+//    var url: URL?
+//    let completion:
+//}
