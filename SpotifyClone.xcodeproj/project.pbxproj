@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E556AFE2582825C007AFCB4 /* AlbumArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E556AFD2582825C007AFCB4 /* AlbumArtistView.swift */; };
+		1E6AEFB82582809000A11B36 /* AlbumArtistCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6AEFB72582809000A11B36 /* AlbumArtistCollectionViewController.swift */; };
 		2CBD8E22258216FA000DCF46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD8E21258216FA000DCF46 /* AppDelegate.swift */; };
 		2CBD8E24258216FA000DCF46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD8E23258216FA000DCF46 /* SceneDelegate.swift */; };
 		2CBD8E26258216FA000DCF46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD8E25258216FA000DCF46 /* ViewController.swift */; };
@@ -74,6 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E556AFD2582825C007AFCB4 /* AlbumArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumArtistView.swift; sourceTree = "<group>"; };
+		1E6AEFB72582809000A11B36 /* AlbumArtistCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumArtistCollectionViewController.swift; sourceTree = "<group>"; };
 		2CBD8E1E258216FA000DCF46 /* SpotifyClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBD8E21258216FA000DCF46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CBD8E23258216FA000DCF46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +256,7 @@
 		2CDA8A2B25824C100005613C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1E556AFD2582825C007AFCB4 /* AlbumArtistView.swift */,
 				2CDA8A5125824CBC0005613C /* HomeView.swift */,
 				2CDA8A5725824CCF0005613C /* PlayerView.swift */,
 				2CDA8A5F25824CE80005613C /* AuthView.swift */,
@@ -267,6 +272,7 @@
 		2CDA8A2C25824C190005613C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1E6AEFB72582809000A11B36 /* AlbumArtistCollectionViewController.swift */,
 				2CDA8A3125824C370005613C /* AuthController.swift */,
 				2CDA8A2D25824C2D0005613C /* HomeController.swift */,
 				2CDA8A3725824C5B0005613C /* PlayerController.swift */,
@@ -442,10 +448,12 @@
 				2CDA8A5C25824CD80005613C /* AlbumController.swift in Sources */,
 				2CDA8A4425824C790005613C /* SearchController.swift in Sources */,
 				2CD6EDCD2582597F00C30F37 /* UIFont+.swift in Sources */,
+				1E6AEFB82582809000A11B36 /* AlbumArtistCollectionViewController.swift in Sources */,
 				2CDA8A6A25824D0D0005613C /* AlbumView.swift in Sources */,
 				2CD6EDA0258252C800C30F37 /* URLRequest+QueryItems.swift in Sources */,
 				2CD6EDCC2582597F00C30F37 /* UIView+Ext.swift in Sources */,
 				2CDA8A6E25824D150005613C /* SearchView.swift in Sources */,
+				1E556AFE2582825C007AFCB4 /* AlbumArtistView.swift in Sources */,
 				2CDA8A8F25824DB10005613C /* Router.swift in Sources */,
 				2CDA8A9625824E2F0005613C /* AlbumRouter.swift in Sources */,
 				2CDA8A3825824C5B0005613C /* PlayerController.swift in Sources */,

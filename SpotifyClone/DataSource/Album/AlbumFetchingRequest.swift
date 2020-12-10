@@ -7,11 +7,11 @@
 
 import Foundation
 
-class AlbumFetchingRequest {
-    private var operation: AlbumFetchingOperation
-    private let queue: OperationQueue
-    
-    var priority: AlbumFetcher.Priority = .low {
-        didSet()
-    }
-}
+//class AlbumFetchingRequest {
+//    private var operation: AlbumFetchingOperation
+//    private let queue: OperationQueue
+//    
+//    var priority: AlbumFetcher.Priority = .low {
+//        didSet()
+//    }
+//}
