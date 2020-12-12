@@ -16,14 +16,14 @@ import Foundation
 
 // MARK: - ExternalIDS
 struct ExternalIDS: Codable {
-    var upc: String?
+    var upc: String
 }
 
 // MARK: ExternalIDS convenience initializers and mutators
 
 extension ExternalIDS {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(ExternalIDS.self, from: data)
+        self = try JSON.decoder().decode(ExternalIDS.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -38,7 +38,7 @@ extension ExternalIDS {
     }
 
     func with(
-        upc: String?? = nil
+        upc: String? = nil
     ) -> ExternalIDS {
         return ExternalIDS(
             upc: upc ?? self.upc
@@ -46,7 +46,7 @@ extension ExternalIDS {
     }
 
     func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
+        return try JSON.encoder().encode(self)
     }
 
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {

@@ -16,18 +16,21 @@ import Foundation
 
 // MARK: - Item
 struct Item: Codable {
-    var artists: [Artist]?
-    var availableMarkets: [String]?
-    var discNumber, durationMS: Int?
-    var explicit: Bool?
-    var externalUrls: ExternalUrls?
-    var href: String?
-    var id, name: String?
-    var previewURL: String?
-    var trackNumber: Int?
-    var type, uri: String?
+    var albumGroup: String
+    var albumType: String
+    var artists: [Artist]
+    var availableMarkets: [String]
+    var discNumber, durationMS: Int
+    var explicit: Bool
+    var externalUrls: ExternalUrls
+    var href: String
+    var id, name: String
+    var previewURL: String
+    var trackNumber: Int
+    var type, uri: String
 
     enum CodingKeys: String, CodingKey {
+        case albumGroup, albumType
         case artists
         case availableMarkets = "available_markets"
         case discNumber = "disc_number"
@@ -45,7 +48,7 @@ struct Item: Codable {
 
 extension Item {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(Item.self, from: data)
+        self = try JSON.decoder().decode(Item.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -60,21 +63,25 @@ extension Item {
     }
 
     func with(
-        artists: [Artist]?? = nil,
-        availableMarkets: [String]?? = nil,
-        discNumber: Int?? = nil,
-        durationMS: Int?? = nil,
-        explicit: Bool?? = nil,
-        externalUrls: ExternalUrls?? = nil,
-        href: String?? = nil,
-        id: String?? = nil,
-        name: String?? = nil,
-        previewURL: String?? = nil,
-        trackNumber: Int?? = nil,
-        type: String?? = nil,
-        uri: String?? = nil
+        albumGroup: String? = nil,
+        albumType: String? = nil,
+        artists: [Artist]? = nil,
+        availableMarkets: [String]? = nil,
+        discNumber: Int? = nil,
+        durationMS: Int? = nil,
+        explicit: Bool? = nil,
+        externalUrls: ExternalUrls? = nil,
+        href: String? = nil,
+        id: String? = nil,
+        name: String? = nil,
+        previewURL: String? = nil,
+        trackNumber: Int? = nil,
+        type: String? = nil,
+        uri: String? = nil
     ) -> Item {
         return Item(
+            albumGroup: albumGroup ?? self.albumGroup,
+            albumType: albumType ?? self.albumType,
             artists: artists ?? self.artists,
             availableMarkets: availableMarkets ?? self.availableMarkets,
             discNumber: discNumber ?? self.discNumber,
@@ -92,7 +99,7 @@ extension Item {
     }
 
     func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
+        return try JSON.encoder().encode(self)
     }
 
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {

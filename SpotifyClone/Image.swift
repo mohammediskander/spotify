@@ -16,16 +16,16 @@ import Foundation
 
 // MARK: - Image
 struct Image: Codable {
-    var height: Int?
-    var url: String?
-    var width: Int?
+    var height: Int
+    var url: String
+    var width: Int
 }
 
 // MARK: Image convenience initializers and mutators
 
 extension Image {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(Image.self, from: data)
+        self = try JSON.decoder().decode(Image.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -40,9 +40,9 @@ extension Image {
     }
 
     func with(
-        height: Int?? = nil,
-        url: String?? = nil,
-        width: Int?? = nil
+        height: Int? = nil,
+        url: String? = nil,
+        width: Int? = nil
     ) -> Image {
         return Image(
             height: height ?? self.height,
@@ -52,7 +52,7 @@ extension Image {
     }
 
     func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
+        return try JSON.encoder().encode(self)
     }
 
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {

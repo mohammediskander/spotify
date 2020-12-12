@@ -1,12 +1,12 @@
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
-//   let tracks = try Tracks(json)
+//   let followers = try Followers(json)
 //
 // To read values from URLs:
 //
-//   let task = URLSession.shared.tracksTask(with: url) { tracks, response, error in
-//     if let tracks = tracks {
+//   let task = URLSession.shared.followersTask(with: url) { followers, response, error in
+//     if let followers = followers {
 //       ...
 //     }
 //   }
@@ -14,22 +14,17 @@
 
 import Foundation
 
-// MARK: - Tracks
-struct Tracks: Codable {
-    var href: String
-    var items: [Item]
-    var limit: Int
-    var next: JSONNull
-    var offset: Int
-    var previous: JSONNull
+// MARK: - Followers
+struct Followers: Codable {
+    var href: JSONNull
     var total: Int
 }
 
-// MARK: Tracks convenience initializers and mutators
+// MARK: Followers convenience initializers and mutators
 
-extension Tracks {
+extension Followers {
     init(data: Data) throws {
-        self = try JSON.decoder().decode(Tracks.self, from: data)
+        self = try JSON.decoder().decode(Followers.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -44,21 +39,11 @@ extension Tracks {
     }
 
     func with(
-        href: String? = nil,
-        items: [Item]? = nil,
-        limit: Int? = nil,
-        next: JSONNull? = nil,
-        offset: Int? = nil,
-        previous: JSONNull? = nil,
+        href: JSONNull? = nil,
         total: Int? = nil
-    ) -> Tracks {
-        return Tracks(
+    ) -> Followers {
+        return Followers(
             href: href ?? self.href,
-            items: items ?? self.items,
-            limit: limit ?? self.limit,
-            next: next ?? self.next,
-            offset: offset ?? self.offset,
-            previous: previous ?? self.previous,
             total: total ?? self.total
         )
     }

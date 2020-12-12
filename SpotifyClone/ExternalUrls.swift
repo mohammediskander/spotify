@@ -16,14 +16,14 @@ import Foundation
 
 // MARK: - ExternalUrls
 struct ExternalUrls: Codable {
-    var spotify: String?
+    var spotify: String
 }
 
 // MARK: ExternalUrls convenience initializers and mutators
 
 extension ExternalUrls {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(ExternalUrls.self, from: data)
+        self = try JSON.decoder().decode(ExternalUrls.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -38,7 +38,7 @@ extension ExternalUrls {
     }
 
     func with(
-        spotify: String?? = nil
+        spotify: String? = nil
     ) -> ExternalUrls {
         return ExternalUrls(
             spotify: spotify ?? self.spotify
@@ -46,7 +46,7 @@ extension ExternalUrls {
     }
 
     func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
+        return try JSON.encoder().encode(self)
     }
 
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {

@@ -16,22 +16,23 @@ import Foundation
 
 // MARK: - Album
 struct Album: Codable {
-    var albumType: String?
-    var artists: [Artist]?
-    var availableMarkets: [String]?
-    var copyrights: [Copyright]?
-    var externalIDS: ExternalIDS?
-    var externalUrls: ExternalUrls?
-    var genres: [JSONAny]?
-    var href: String?
-    var id: String?
-    var images: [Image]?
-    var name: String?
-    var popularity: Int?
-    var releaseDate, releaseDatePrecision: String?
-    var tracks: Tracks?
-    var type, uri: String?
-
+    var albumType: String
+    var artists: [Artist]
+    var availableMarkets: [JSONAny]
+    var copyrights: [Copyright]
+    var externalIDS: ExternalIDS
+    var externalUrls: ExternalUrls
+    var genres: [JSONAny]
+    var href: String
+    var id: String
+    var images: [Image]
+    var label, name: String
+    var popularity: Int
+    var releaseDate, releaseDatePrecision: String
+    var totalTracks: Int
+    var tracks: Tracks
+    var type, uri: String
+    
     enum CodingKeys: String, CodingKey {
         case albumType = "album_type"
         case artists
@@ -39,9 +40,10 @@ struct Album: Codable {
         case copyrights
         case externalIDS = "external_ids"
         case externalUrls = "external_urls"
-        case genres, href, id, images, name, popularity
+        case genres, href, id, images, label, name, popularity
         case releaseDate = "release_date"
         case releaseDatePrecision = "release_date_precision"
+        case totalTracks = "total_tracks"
         case tracks, type, uri
     }
 }
@@ -50,38 +52,40 @@ struct Album: Codable {
 
 extension Album {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(Album.self, from: data)
+        self = try JSON.decoder().decode(Album.self, from: data)
     }
-
+    
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
-
+    
     init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-
+    
     func with(
-        albumType: String?? = nil,
-        artists: [Artist]?? = nil,
-        availableMarkets: [String]?? = nil,
-        copyrights: [Copyright]?? = nil,
-        externalIDS: ExternalIDS?? = nil,
-        externalUrls: ExternalUrls?? = nil,
-        genres: [JSONAny]?? = nil,
-        href: String?? = nil,
-        id: String?? = nil,
-        images: [Image]?? = nil,
-        name: String?? = nil,
-        popularity: Int?? = nil,
-        releaseDate: String?? = nil,
-        releaseDatePrecision: String?? = nil,
-        tracks: Tracks?? = nil,
-        type: String?? = nil,
-        uri: String?? = nil
+        albumType: String? = nil,
+        artists: [Artist]? = nil,
+        availableMarkets: [JSONAny]? = nil,
+        copyrights: [Copyright]? = nil,
+        externalIDS: ExternalIDS? = nil,
+        externalUrls: ExternalUrls? = nil,
+        genres: [JSONAny]? = nil,
+        href: String? = nil,
+        id: String? = nil,
+        images: [Image]? = nil,
+        label: String? = nil,
+        name: String? = nil,
+        popularity: Int? = nil,
+        releaseDate: String? = nil,
+        releaseDatePrecision: String? = nil,
+        totalTracks: Int? = nil,
+        tracks: Tracks? = nil,
+        type: String? = nil,
+        uri: String? = nil
     ) -> Album {
         return Album(
             albumType: albumType ?? self.albumType,
@@ -94,20 +98,22 @@ extension Album {
             href: href ?? self.href,
             id: id ?? self.id,
             images: images ?? self.images,
+            label: label ?? self.label,
             name: name ?? self.name,
             popularity: popularity ?? self.popularity,
             releaseDate: releaseDate ?? self.releaseDate,
             releaseDatePrecision: releaseDatePrecision ?? self.releaseDatePrecision,
+            totalTracks: totalTracks ?? self.totalTracks,
             tracks: tracks ?? self.tracks,
             type: type ?? self.type,
             uri: uri ?? self.uri
         )
     }
-
+    
     func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
+        return try JSON.encoder().encode(self)
     }
-
+    
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }

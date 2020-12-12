@@ -16,13 +16,19 @@ import Foundation
 
 // MARK: - Artist
 struct Artist: Codable {
-    var externalUrls: ExternalUrls?
-    var href: String?
-    var id, name, type, uri: String?
+    var externalUrls: ExternalUrls
+    var followers: Followers
+    var genres: [String]
+    var href: String
+    var id: String
+    var images: [Image]
+    var name: String
+    var popularity: Int
+    var type, uri: String
 
     enum CodingKeys: String, CodingKey {
         case externalUrls = "external_urls"
-        case href, id, name, type, uri
+        case followers, genres, href, id, images, name, popularity, type, uri
     }
 }
 
@@ -30,7 +36,7 @@ struct Artist: Codable {
 
 extension Artist {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(Artist.self, from: data)
+        self = try JSON.decoder().decode(Artist.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -45,25 +51,33 @@ extension Artist {
     }
 
     func with(
-        externalUrls: ExternalUrls?? = nil,
-        href: String?? = nil,
-        id: String?? = nil,
-        name: String?? = nil,
-        type: String?? = nil,
-        uri: String?? = nil
-    ) -> Artist {
-        return Artist(
-            externalUrls: externalUrls ?? self.externalUrls,
-            href: href ?? self.href,
-            id: id ?? self.id,
-            name: name ?? self.name,
-            type: type ?? self.type,
-            uri: uri ?? self.uri
-        )
-    }
+            externalUrls: ExternalUrls? = nil,
+            followers: Followers? = nil,
+            genres: [String]? = nil,
+            href: String? = nil,
+            id: String? = nil,
+            images: [Image]? = nil,
+            name: String? = nil,
+            popularity: Int? = nil,
+            type: String? = nil,
+            uri: String? = nil
+        ) -> Artist {
+            return Artist(
+                externalUrls: externalUrls ?? self.externalUrls,
+                followers: followers ?? self.followers,
+                genres: genres ?? self.genres,
+                href: href ?? self.href,
+                id: id ?? self.id,
+                images: images ?? self.images,
+                name: name ?? self.name,
+                popularity: popularity ?? self.popularity,
+                type: type ?? self.type,
+                uri: uri ?? self.uri
+            )
+        }
 
     func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
+        return try JSON.encoder().encode(self)
     }
 
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {

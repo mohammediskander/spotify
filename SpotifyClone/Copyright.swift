@@ -16,14 +16,14 @@ import Foundation
 
 // MARK: - Copyright
 struct Copyright: Codable {
-    var text, type: String?
+    var text, type: String
 }
 
 // MARK: Copyright convenience initializers and mutators
 
 extension Copyright {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(Copyright.self, from: data)
+        self = try JSON.decoder().decode(Copyright.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -38,8 +38,8 @@ extension Copyright {
     }
 
     func with(
-        text: String?? = nil,
-        type: String?? = nil
+        text: String? = nil,
+        type: String? = nil
     ) -> Copyright {
         return Copyright(
             text: text ?? self.text,
@@ -48,7 +48,7 @@ extension Copyright {
     }
 
     func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
+        return try JSON.encoder().encode(self)
     }
 
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {

@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UIFont.overrideInitialize()
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UINavigationController(rootViewController: HomeController()) // Your RootViewController in here
+            window.rootViewController = UINavigationController(rootViewController: AuthController()) // Your RootViewController in here
             self.window = window
             window.makeKeyAndVisible()
         }
@@ -32,11 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let url = URLContexts.first?.url else {
             return
         }
-    
-        print("\(#function) url: \(url)")
-    
         
-        // spotifyclone://spotify-login-callback
         if url.host == "spotify-login-callback" {
             OAuthSwift.handle(url: url)
         }
